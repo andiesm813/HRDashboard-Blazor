@@ -1,0 +1,132 @@
+@page "/"
+@inject DashboardData.DashboardDataService dashboardDataService
+
+<div class="row-layout dashboard-container">
+    <div class="row-layout group">
+        <div class="column-layout group_1">
+            <div class="column-layout group_2">
+                <div class="row-layout group_3">
+                    <div class="column-layout group_4">
+                        <h5 class="h5">
+                            Good Morning, Sandy!
+                        </h5>
+                        <p class="typography__body-1 text">
+                            Your Highlights
+                        </p>
+                    </div>
+                </div>
+                <div class="row-layout group_5">
+                    <IgbCard Outlined="true" class="card" dashboard-scope>
+                        <IgbCardMedia class="media-content" dashboard-scope>
+                            <img src="assets/Illustration1.svg" class="image" />
+                        </IgbCardMedia>
+                        <IgbCardHeader>
+                            <h3 slot="title">
+                                Team Stats
+                            </h3>
+                            <h5 slot="subtitle">
+                                2010-2022
+                            </h5>
+                        </IgbCardHeader>
+                        <IgbCardActions class="actions-content" dashboard-scope>
+                            <IgbButton Variant="ButtonVariant.Flat" class="button" dashboard-scope>
+                                Details
+                                <IgbRipple></IgbRipple>
+                            </IgbButton>
+                            <IgbIconButton Variant="IconButtonVariant.Flat" class="icon-button" dashboard-scope>
+                                <span class="material-icons">
+                                    add_alert
+                                </span>
+                                <IgbRipple></IgbRipple>
+                            </IgbIconButton>
+                        </IgbCardActions>
+                    </IgbCard>
+                    <IgbCard Outlined="true" class="card" dashboard-scope>
+                        <IgbCardMedia class="media-content" dashboard-scope>
+                            <img src="assets/Illustration2.svg" class="image" />
+                        </IgbCardMedia>
+                        <IgbCardHeader>
+                            <h3 slot="title">
+                                Ideation Workshop
+                            </h3>
+                            <h5 slot="subtitle">
+                                View Proposals
+                            </h5>
+                        </IgbCardHeader>
+                        <IgbCardActions class="actions-content" dashboard-scope>
+                            <IgbButton Variant="ButtonVariant.Flat" class="button" dashboard-scope>
+                                Details
+                                <IgbRipple></IgbRipple>
+                            </IgbButton>
+                            <IgbIconButton Variant="IconButtonVariant.Flat" class="icon-button" dashboard-scope>
+                                <span class="material-icons">
+                                    add_alert
+                                </span>
+                                <IgbRipple></IgbRipple>
+                            </IgbIconButton>
+                        </IgbCardActions>
+                    </IgbCard>
+                    <IgbCard Outlined="true" class="card" dashboard-scope>
+                        <IgbCardMedia class="media-content" dashboard-scope>
+                            <img src="assets/Illustration3.svg" class="image" />
+                        </IgbCardMedia>
+                        <IgbCardHeader>
+                            <h3 slot="title">
+                                Upcoming Training
+                            </h3>
+                            <h5 slot="subtitle">
+                                July 2022
+                            </h5>
+                        </IgbCardHeader>
+                        <IgbCardActions class="actions-content" dashboard-scope>
+                            <IgbButton Variant="ButtonVariant.Flat" class="button" dashboard-scope>
+                                Details
+                                <IgbRipple></IgbRipple>
+                            </IgbButton>
+                            <IgbIconButton Variant="IconButtonVariant.Flat" class="icon-button" dashboard-scope>
+                                <span class="material-icons">
+                                    add_alert
+                                </span>
+                                <IgbRipple></IgbRipple>
+                            </IgbIconButton>
+                        </IgbCardActions>
+                    </IgbCard>
+                </div>
+            </div>
+            <div class="row-layout group_6">
+                <div class="column-layout group_7">
+                    <h6 class="h6">
+                        Current Team Members
+                    </h6>
+                    <IgbGrid Data="dashboardDataTeamMembersGrid" PrimaryKey="FirstName" DisplayDensity="DisplayDensity.Cosy" AllowFiltering="true" FilterMode="FilterMode.ExcelStyleFilter" AutoGenerate="false" class="ig-typography grid" dashboard-scope>
+                        <IgbColumn Field="FirstName" DataType="GridColumnDataType.String" Header="FirstName" Sortable="true" Selectable="false"></IgbColumn>
+                        <IgbColumn Field="LastName" DataType="GridColumnDataType.String" Header="LastName" Sortable="true" Selectable="false"></IgbColumn>
+                        <IgbColumn Field="HireDate" DataType="GridColumnDataType.String" Header="HireDate" Sortable="true" Selectable="false"></IgbColumn>
+                        <IgbColumn Field="ID" DataType="GridColumnDataType.Number" Header="ID" Sortable="true" Selectable="false"></IgbColumn>
+                        <IgbColumn Field="Department" DataType="GridColumnDataType.String" Header="Department" Sortable="true" Selectable="false"></IgbColumn>
+                        <IgbColumn Field="Position" DataType="GridColumnDataType.String" Header="Position" Sortable="true" Selectable="false"></IgbColumn>
+                        <IgbColumn Field="Email" DataType="GridColumnDataType.String" Header="Email" Sortable="true" Selectable="false"></IgbColumn>
+                        <IgbColumn Field="Phone" DataType="GridColumnDataType.String" Header="Phone" Sortable="true" Selectable="false"></IgbColumn>
+                    </IgbGrid>
+                </div>
+                <div class="column-layout group_8">
+                    <h6 class="h6">
+                        Team Growth
+                    </h6>
+                    <IgbCategoryChart DataSource="dashboardDataTeamGrowth" ChartType="CategoryChartType.Area" ComputedPlotAreaMarginMode="ComputedPlotAreaMarginMode.Series" class="category-chart" dashboard-scope></IgbCategoryChart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private DashboardData.TeamMembersGridType[] dashboardDataTeamMembersGrid = Array.Empty<DashboardData.TeamMembersGridType>();
+    private DashboardData.TeamGrowthType[] dashboardDataTeamGrowth = Array.Empty<DashboardData.TeamGrowthType>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        dashboardDataTeamMembersGrid = await this.dashboardDataService.GetTeamMembersGrid() ?? dashboardDataTeamMembersGrid;
+        dashboardDataTeamGrowth = await this.dashboardDataService.GetTeamGrowth() ?? dashboardDataTeamGrowth;
+    }
+}

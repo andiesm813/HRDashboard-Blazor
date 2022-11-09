@@ -1,0 +1,91 @@
+@page "/team"
+@inject DashboardData.DashboardDataService dashboardDataService
+
+<div class="row-layout team-container">
+    <div class="column-layout group">
+        <div class="column-layout group_1">
+            <h5 class="h5">
+                Team Members
+            </h5>
+            <p class="typography__body-1 text">
+                64 People
+            </p>
+        </div>
+        <div class="row-layout group_2">
+            @foreach (var item in dashboardDataAllTeamMembers)
+            {
+                <IgbCard class="card" team-scope>
+                    <IgbCardHeader>
+                        <h3 slot="title">
+                        </h3>
+                        <h5 slot="subtitle">
+                        </h5>
+                    </IgbCardHeader>
+                    <IgbCardContent class="body-content" team-scope>
+                        <div class="column-layout group_3">
+                            <div class="column-layout group_4">
+                                <img src="@item.Photo" class="image" />
+                                <div class="row-layout group_5">
+                                    <p class="typography__subtitle-2 text_1">
+                                        @item.FirstName
+                                    </p>
+                                    <p class="typography__subtitle-2 text_2">
+                                        @item.LastName
+                                    </p>
+                                </div>
+                                <p class="typography__overline text_3">
+                                    @item.Position
+                                </p>
+                            </div>
+                            <div class="row-layout group_6">
+                                <div class="column-layout group_7">
+                                    <p class="typography__overline text_3">
+                                        Department
+                                    </p>
+                                    <p class="typography__subtitle-2 text_3">
+                                        @item.Department
+                                    </p>
+                                </div>
+                                <div class="column-layout group_7">
+                                    <p class="typography__overline text_3">
+                                        HIRE DATE
+                                    </p>
+                                    <p class="typography__subtitle-2 text_3">
+                                        @item.HireDate
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="column-layout group_8">
+                                <div class="row-layout group_9">
+                                    <span class="material-icons icon">
+                                        mail
+                                    </span>
+                                    <a href class="typography__body-2 hyperlink">
+                                        @item.Email
+                                    </a>
+                                </div>
+                                <div class="row-layout group_9">
+                                    <span class="material-icons icon">
+                                        phone_android
+                                    </span>
+                                    <p class="typography__body-2 text_4">
+                                        @item.Phone
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </IgbCardContent>
+                </IgbCard>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private DashboardData.AllTeamMembersType[] dashboardDataAllTeamMembers = Array.Empty<DashboardData.AllTeamMembersType>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        dashboardDataAllTeamMembers = await this.dashboardDataService.GetAllTeamMembers() ?? dashboardDataAllTeamMembers;
+    }
+}

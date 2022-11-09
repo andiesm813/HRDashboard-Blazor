@@ -1,0 +1,212 @@
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+@inject DashboardData.DashboardDataService dashboardDataService
+
+<div class="row-layout master-page-container">
+    <div class="row-layout group">
+        <div class="row-layout group_1">
+            <div class="column-layout left-panel">
+                <div class="column-layout logo-and-nav">
+                    <div class="row-layout logo">
+                        <img src="assets/LogoHR.svg" class="image" />
+                        <p class="typography__subtitle-2 text">
+                            HR
+                        </p>
+                        <p class="typography__subtitle-2 text_1">
+                            CORP
+                        </p>
+                    </div>
+                    <IgbList class="navigation" master-page-scope>
+                        <IgbListItem @onclick="@(e => Navigate(""))" class="list-item_1" master-page-scope>
+                            <div slot="start">
+                                <IgbAvatar Shape="AvatarShape.Circle" class="avatar avatar_1" master-page-scope>
+                                    <span class="material-icons">dashboard</span>
+                                </IgbAvatar>
+                            </div>
+                            <div>
+                                <p class="typography__subtitle-2 text_2">
+                                    DASHBOARD
+                                </p>
+                            </div>
+                        </IgbListItem>
+                        <IgbListItem @onclick="@(e => Navigate("team"))" class="list-item_1" master-page-scope>
+                            <div slot="start">
+                                <IgbAvatar Shape="AvatarShape.Circle" class="avatar avatar_2" master-page-scope>
+                                    <span class="material-icons">people</span>
+                                </IgbAvatar>
+                            </div>
+                            <div>
+                                <p class="typography__subtitle-2 text_3">
+                                    TEAM
+                                </p>
+                            </div>
+                        </IgbListItem>
+                        <IgbListItem @onclick="@(e => Navigate("events"))">
+                            <div slot="start">
+                                <IgbAvatar Shape="AvatarShape.Circle" class="avatar avatar_3" master-page-scope>
+                                    <span class="material-icons">stars</span>
+                                </IgbAvatar>
+                            </div>
+                            <div>
+                                <p class="typography__subtitle-2 text_3">
+                                    EVENTS
+                                </p>
+                            </div>
+                        </IgbListItem>
+                    </IgbList>
+                </div>
+                <div class="column-layout user">
+                    <IgbAvatar Src="assets/Avatar13.png" Size="SizableComponentSize.Large" Shape="AvatarShape.Circle" class="avatar" master-page-scope></IgbAvatar>
+                    <p class="typography__subtitle-2 text_4">
+                        Sandy Anderson
+                    </p>
+                    <p class="typography__caption text_5">
+                        UX DESIGN LEAD
+                    </p>
+                </div>
+                <div class="column-layout background">
+                    <div class="row-layout group_2">
+                        <IgbButton Variant="ButtonVariant.Flat" class="button" master-page-scope>
+                            <span class="material-icons">
+                                settings
+                            </span>
+                            <span>Settings</span>
+                            <IgbRipple></IgbRipple>
+                        </IgbButton>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-container">
+            @Body
+        </div>
+        <div class="column-layout right-panel">
+            <div class="column-layout group_3">
+                <div class="row-layout group_4">
+                    <h6 class="h6">
+                        Calendar
+                    </h6>
+                    <IgbIconButton Variant="IconButtonVariant.Flat" class="icon-button" master-page-scope>
+                        <span class="material-icons">
+                            notifications
+                        </span>
+                        <IgbRipple></IgbRipple>
+                    </IgbIconButton>
+                </div>
+                <IgbList class="navigation" master-page-scope>
+                    <IgbListHeader>July 1st</IgbListHeader>
+                    <IgbListItem>
+                        <div>
+                            <div class="row-layout logo">
+                                <p class="typography__subtitle-1 text_6">
+                                    10 AM
+                                </p>
+                                <div class="column-layout group_5">
+                                    <p class="typography__overline text_5">
+                                        TRAINING
+                                    </p>
+                                    <p class="typography__subtitle-2 text_7">
+                                        Intro to Scrum
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </IgbListItem>
+                    <IgbListItem>
+                        <div>
+                            <div class="row-layout logo">
+                                <p class="typography__subtitle-1 text_6">
+                                    12 PM
+                                </p>
+                                <div class="column-layout group_6">
+                                    <p class="typography__overline text_5">
+                                        OFFICE HOURS
+                                    </p>
+                                    <p class="typography__subtitle-2 text_7">
+                                        Customers Q&amp;A
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </IgbListItem>
+                    <IgbListHeader class="list-item" master-page-scope>July 5th</IgbListHeader>
+                    <IgbListItem>
+                        <div>
+                            <div class="row-layout logo">
+                                <p class="typography__subtitle-1 text_6">
+                                    10 AM
+                                </p>
+                                <div class="column-layout group_7">
+                                    <p class="typography__overline text_5">
+                                        HR CORP
+                                    </p>
+                                    <p class="typography__subtitle-2 text_7">
+                                        Company Meeting
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </IgbListItem>
+                    <IgbListItem>
+                        <div>
+                            <div class="row-layout logo">
+                                <p class="typography__subtitle-1 text_6">
+                                    12 PM
+                                </p>
+                                <div class="column-layout group_8">
+                                    <p class="typography__overline text_5">
+                                        TRAINING
+                                    </p>
+                                    <p class="typography__subtitle-2 text_7">
+                                        Managing People
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </IgbListItem>
+                </IgbList>
+            </div>
+            <div class="column-layout group_9">
+                <h6 class="h6_1">
+                    New Team Members
+                </h6>
+                <IgbList class="navigation" master-page-scope>
+                    @foreach (var item in dashboardDataNewTeamMembersList)
+                    {
+                        <IgbListItem>
+                            <div>
+                                <div class="row-layout logo">
+                                    <IgbAvatar Src="@item.Photo" Shape="AvatarShape.Circle" class="avatar" master-page-scope></IgbAvatar>
+                                    <div class="column-layout group_10">
+                                        <div class="row-layout group_11">
+                                            <p class="typography__subtitle-2 text_8">
+                                                @item.Name
+                                            </p>
+                                        </div>
+                                        <p class="typography__overline text_5">
+                                            @item.Position
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </IgbListItem>
+                    }
+                </IgbList>
+            </div>
+        </div>
+    </div>
+    <span class="settings">Dialog not yet available in Blazor</span>
+</div>
+
+@code {
+    private DashboardData.NewTeamMembersListType[] dashboardDataNewTeamMembersList = Array.Empty<DashboardData.NewTeamMembersListType>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        dashboardDataNewTeamMembersList = await this.dashboardDataService.GetNewTeamMembersList() ?? dashboardDataNewTeamMembersList;
+    }
+    private void Navigate(string path)
+    {
+        NavigationManager.NavigateTo(path);
+    }
+}
